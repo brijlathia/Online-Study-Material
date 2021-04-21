@@ -1,0 +1,47 @@
+<?php
+	include("conn.php");
+	if(isset($_REQUEST['signup']))
+	{
+		$fname=$_REQUEST['fname'];
+		$lname=$_REQUEST['lname'];
+		$dob=$_REQUEST['dob'];
+		$gender=$_REQUEST['gender'];
+		$mobile=$_REQUEST['mobile'];
+		$uname=$_REQUEST['uname'];
+		$email=$_REQUEST['email'];
+		$pass=$_REQUEST['pass'];
+		$utype=$_REQUEST['utype'];
+		if($gender=='Male')
+			{ $gender=1;}
+		else if($gender=='Female')
+			{$gender=0;}
+		if($utype=='Student')
+			{ $utype="S";}
+		else if($utype=='Professor')
+		{ $utype="P";}
+		$q1="insert into info_common (FNAME,LNAME,DOB,GENDER,MOBILE,USERNAME,EMAIL,PASS,TYPE) VALUES ('$fname','$lname','$dob','$gender','$mobile','$uname','$email','$pass','$utype')";
+		$exec_q1=$conn->query($q1);
+		/*$_POST['fname']=$fname;
+		$_POST['lname']=$lanme;
+		$_POST['dob']=$dob;
+		$_POST['gender']=$gender;
+		$_POST['mobile']=$mobile;
+		$_POST['uname']=$uname;
+		$_POST['email']=$email;
+		$_POST['pass']=$pass;
+		$_POST['gender']=$gender;
+		$_POST['utype']=$utype;*/
+
+
+        //$_GLOBAL['ut']=$utype;
+		$next="select * from info_common where email='$email'";
+		$execn=$conn->query($next);
+		$datan=$execn->fetch_object();
+		//$_GLOBAL['proceeds2']=$datan->id;
+		//$_POST['proceeds2']=$data->id;
+		//$GLOBALS['proceeds2']=$datan->id;
+		//header('Location:step2.php');
+		//header('Location:temp.php');
+		
+	}
+?>
